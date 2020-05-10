@@ -20,6 +20,7 @@ module Geo
       if body['status'] == 'OK'
         body['results'][0]['geometry']['location'].values
       else
+        raise "Google Map API failed. Status: #{body['status']} / ErrMessage: #{body['error_message']}" if Rails.env == 'development'
         nil
       end
     end
